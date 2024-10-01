@@ -6,4 +6,5 @@ __pycache__
 *.pyc
 *.yaml
 credentials.json
+credentials.py
 _data.py
