@@ -1,10 +1,35 @@
-logs
-*.json
-*.txt
-*.xlsx
-__pycache__
+# Python
 *.pyc
-*.yaml
-credentials.json
+__pycache__/
+
+# Environment
+.env
+
+# Database
+db.sqlite3
+
+# Virtual environments
+venv/
+env/
+
+# Django migration files
+*.log
+*.pot
+*.pyo
+*.sqlite3
+
+# Static and media folders (if applicable)
+staticfiles/
+media/
+
+# IDE files
+.idea/
+.vscode/
+
+#Protected variables
 credentials.py
-_data.py
+credentials.json
+
+#Local log files
+logs
+*.txt

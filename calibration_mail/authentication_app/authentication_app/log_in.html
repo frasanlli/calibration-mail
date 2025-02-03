@@ -1,0 +1,16 @@
+{% extends "shop_app/base.html" %}
+
+{% block message %}
+<form method="post" action="" id ="log_in_form" >
+  {% csrf_token %}
+  <div class = "intro-text left-0 bg-faded p-5 rounded">
+    {{form}}
+    <input type="submit" value="Log in" class="p-3" style="margin-top: 10px;">
+  </div>
+
+</form>
+
+{% endblock %}
+{% block title %}
+
+{% endblock %}
