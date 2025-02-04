@@ -3,6 +3,21 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from dateutil.relativedelta import relativedelta
 
+class Location(models.Model):
+    country = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    # Set a custom primary key that combines city and country
+    id = models.CharField(max_length=100, primary_key=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        # Generate the ID in the format {city}_{country}
+        self.id = f"{self.city}_{self.country}"
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.city}, {self.country}"
+
+
 class Device(models.Model):
     # Basic Device Information
     name = models.CharField(
@@ -18,6 +33,10 @@ class Device(models.Model):
         max_length=255,
         help_text="Manufacturer of the device"
     )
+    device_image = models.ImageField(
+        blank=True,
+        null=True,
+    )
     model_number = models.CharField(
         max_length=100,
         help_text="Model number of the device"
@@ -28,8 +47,8 @@ class Device(models.Model):
 
     # Calibration Information
     calibration_required = models.BooleanField(
-        default=True,
-        help_text="Whether the device requires calibration"
+        default=False,
+        help_text="Whether the device requires calibration",
     )
     is_calibrating = models.BooleanField(
         default=False,
@@ -54,11 +73,11 @@ class Device(models.Model):
         default=True,
         help_text="Whether the device is available to use it"
     )
-    location = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        help_text="Current location of the device"
+    location = models.ForeignKey(
+        Location,
+        on_delete=models.CASCADE,
+        help_text="Current location of the device",
+        default="Valencia_Spain"
     )
     controlled_by = models.ForeignKey(
         'auth.User',
