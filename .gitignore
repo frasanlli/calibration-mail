@@ -27,6 +27,7 @@ media/
 .vscode/
 
 #Protected variables
+p_constants.py
 credentials.py
 credentials.json
 
