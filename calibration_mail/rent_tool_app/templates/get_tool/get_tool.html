@@ -6,38 +6,46 @@
 
 {% load static %}
 
-{% block heading %}
-  <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4" >
-            <span class="section-heading-upper">Measurements</span>
-            <span class="section-heading-lower">The best stock</span>
-          </h2>
-          <p class="mb-3">Remember updating the tool's state when you take it!
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </section>
-{% endblock %}
-
-{% block message %}
-  <section class="page-section cta">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <div class="cta-inner text-center rounded">
-            <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Remember updating the tool's state when you take it!</span>
-              <span class="section-heading-lower">Remember updating the tool's state when you take it!</span>
-            </h2>
-            <p class="mb-0">Remember updating the tool's state when you take it!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+{% block authentified %}
+<table class = "table table-bordered"
+style="color: white; background-color: BLACK; text-align: center;">
+    <thead>
+        <tr>
+            <th colspan="4" class ="text-center">
+                DEVICES
+            </th>
+        </tr>
+        <tr>
+            <th>Device</th>
+            <th>Location</th>
+            <th>serial number</th>
+            <th>is_available</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if devices %}
+            {% for device in devices %}
+            <tr class="text-center">
+                <td>{{device.name}}</td>
+                <td>{{device.location}}</td>
+                <td>{{device.serial_number}}</td>
+                <td>{{device.is_available}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr class="text-center">
+            <td>test fail</td>
+        </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" style="text-align: center;">
+                <a href="#" class ="btn btn-success" >
+                    Update device
+                </a>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 {% endblock %}

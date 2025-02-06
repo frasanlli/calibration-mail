@@ -1,0 +1,53 @@
+{% extends "authentication_app/base.html" %}
+
+{% block title %}
+    Current state
+{% endblock %}
+
+{% load static %}
+
+{% block authentified %}
+<table class = "table table-bordered"
+style="color: white; background-color: BLACK; text-align: center;">
+    <thead>
+        <tr>
+            <th colspan="4" class ="text-center">
+                DEVICES
+            </th>
+        </tr>
+        <tr>
+            <th>Device</th>
+            <th>Location</th>
+            <th>serial number</th>
+            <th>is_available</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if devices %}
+            {% for device in devices %}
+            <tr class="text-center">
+                <td>{{device.name}}</td>
+                <td>{{device.location}}</td>
+                <td>{{device.serial_number}}</td>
+                <td>{{device.is_available}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr class="text-center">
+            <td colspan="4" style="text-align: center;">
+                No actions required
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" style="text-align: center;">
+                <a href="#" class ="btn btn-success" >
+                    Check device
+                </a>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% endblock %}

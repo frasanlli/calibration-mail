@@ -17,7 +17,7 @@ def log_in(request):
                                 password = password)
             if user is not None:
                 login(request, user)
-                return redirect("home")
+                redirect("authentication_app/log_in.html")
             else:
                 for msg in form.error_messages:
                     messages.error(request, form.error_messages[msg])
@@ -31,4 +31,4 @@ def log_in(request):
 def log_out(request):
     logout(request)
 
-    return redirect("home")
+    return redirect("authentication_app/log_in.html")

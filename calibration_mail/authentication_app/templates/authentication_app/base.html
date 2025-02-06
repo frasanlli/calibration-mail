@@ -34,21 +34,18 @@
                 Hello, {{user.username}}
             </a>
             /
-            <a href="#" style="color: white;">
+            <a href="{% url 'log_in' %}" style="color: white;">
                 Log out
             </a>
             {% else %}
-            <a href="#" style="color: white;">
+            <a href="{% url 'log_in' %}" style="color: white;">
                 Log in
-            </a>
-             /
-            <a href="#" style="color: white;">
-                Create user
             </a>
             {% endif %}
         </div>
 
         <!-- Navbar -->
+        {% if user.is_authenticated %}
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark py-lg-4" id="mainNav">
             <div class="container">
             <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">
@@ -62,23 +59,23 @@
                 <ul class="navbar-nav mx-auto">
 
                     <li class="nav-item
-                        {% if request.path == '/' %}
+                        {% if 'state' in request.path %}
                             active
                         {% endif %}
                         px-lg-4">
-                        <a
-                            class="nav-link text-uppercase text-expanded"
-                            href="#">
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'tools_state' %}">
                             Information
                         </a>
                     </li>
 
                     <li class="nav-item
-                        {% if 'state' in request.path %}
+                        {% if not 'tools/t' in request.path %}
                             active
                         {% endif %}
                         px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="#">Tools</a>
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'get_tool' %}">
+                            Tools
+                        </a>
                     </li>
 
                     <li class="nav-item
@@ -93,6 +90,7 @@
             </div>
             </div>
         </nav>
+        {% endif %}
 
 
         <!-- Heading -->
@@ -100,12 +98,18 @@
 
         {% endblock %}
 
-
-
-        <!-- Message -->
-        {% block message %}
+        <!-- Authenticated view -->
+        {% if user.is_authenticated %}
+        {% block authentified %}
 
         {% endblock %}
+
+        {% else %}
+        <!-- Not authenticated view -->
+        {% block not_authentified %}
+
+        {% endblock %}
+        {% endif %}
 
 
         <!-- Footer -->

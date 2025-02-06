@@ -4,14 +4,23 @@
 Log in
 {% endblock %}
 
-{% block message %}
+{% block not_authentified %}
 <form method="post" action="" id ="log_in_form" >
   {% csrf_token %}
-  <div class = "intro-text left-0 bg-faded p-5 rounded">
+  <div class = "intro-text left-0 bg-faded p-5 rounded text-center">
     {{form}}
     <input type="submit" value="Log in" class="p-3" style="margin-top: 10px;">
   </div>
 
 </form>
+
+{% endblock %}
+
+{% block authentified %}
+{% csrf_token %}
+<div class = "intro-text left-0 bg-faded p-5 rounded text-center">
+  <button type="button" class="btn btn-secondary">Log out</button>
+  <button type="button" class="btn btn-primary">Continue session</button>
+</div>
 
 {% endblock %}

@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from dateutil.relativedelta import relativedelta
 
@@ -94,6 +93,9 @@ class Device(models.Model):
     updated_at = models.DateTimeField(auto_now=True,
         help_text="Timestamp when the device was last updated"
     )
+    class Meta:
+        verbose_name = 'device'
+        verbose_name_plural = 'devices'
 
     def __str__(self):
         return f"{self.name} (SN: {self.serial_number})"

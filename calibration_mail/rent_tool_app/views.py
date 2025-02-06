@@ -1,12 +1,15 @@
 from django.shortcuts import render
-from .models import Device
+from .models import Device, Location
 
 # Create your views here.
 
 def get_tool (request):
+    devices = Device.objects.all()
+    #locations = Location.objects.all()
 
-    #get_tool = Device.objects.all()
-    return render(request, "get_tool/get_tool.html")
+    return render(request, "get_tool/get_tool.html",
+                  {"devices": devices})
+
 
 def tools_state (request):
 
