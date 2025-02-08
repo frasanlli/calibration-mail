@@ -104,4 +104,10 @@ class Device(models.Model):
         # Automatically set the calibration due date based on the last calibration date and interval
         if self.last_calibration_date and self.calibration_interval:
             self.calibration_due_date = self.last_calibration_date + relativedelta(months=self.calibration_interval)
+
+        # Automatically change availability to false if next conditions are met:
+        if self.is_calibrating or (self.location.city != "Valencia" and self.location.country != "Spain"):
+            self.is_available = False
+
+
         super().save(*args, **kwargs)

@@ -11,48 +11,45 @@
 style="background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="6" class ="text-center">
+            <th colspan="7" class ="text-center" style="background-color: lightblue;">
                 NEED CALIBRATION
             </th>
         </tr>
-        <tr>
+        <tr style="background-color: lightblue;">
             <th>Device</th>
             <th>Location</th>
             <th>serial number</th>
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
         {% if tools_need_calibration %}
             {% for device in tools_need_calibration %}
-                <tr class="text-center" style="background-color: red;">
+                <tr class="text-center" style="background-color: lightcoral;">
                     <td>{{device.name}}</td>
-                    <td>{{device.location.id}}</td>
+                    <td>{{device.location}}</td>
                     <td>{{device.serial_number}}</td>
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>
+                        <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-danger" >
+                            Update device
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="6" style="text-align: center; background-color: green">
+            <td colspan="7" style="text-align: center; background-color: lightcyan">
                 No actions required
             </td>
         </tr>
         {% endif %}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                <a href="#" class ="btn btn-success" >
-                    Check device
-                </a>
-            </td>
-        </tr>
-    </tfoot>
 </table>
 
 
@@ -60,17 +57,18 @@ style="background-color: white; text-align: center;">
 style="background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="6" class ="text-center">
+            <th colspan="7" class ="text-center" style="background-color: lightblue;">
                 IN CALIBRATION
             </th>
         </tr>
-        <tr>
+        <tr style="background-color: lightblue;">
             <th>Device</th>
             <th>Location</th>
             <th>serial number</th>
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
@@ -78,47 +76,44 @@ style="background-color: white; text-align: center;">
             {% for device in tools_are_calibrating %}
                 <tr class="text-center" style="background-color: orange;">
                     <td>{{device.name}}</td>
-                    <td>{{device.location.id}}</td>
+                    <td>{{device.location}}</td>
                     <td>{{device.serial_number}}</td>
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>
+                        <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-info" >
+                            Update device
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="6" style="text-align: center;background-color: green">
+            <td colspan="7" style="text-align: center;background-color: lightcyan">
                 All items are calibrated
             </td>
         </tr>
         {% endif %}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                <a href="#" class ="btn btn-success" >
-                    Check device
-                </a>
-            </td>
-        </tr>
-    </tfoot>
 </table>
 
 <table class = "table table-bordered"
 style="color: black; background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="6" class ="text-center">
+            <th colspan="7" class ="text-center" style="background-color: lightblue;">
                 OUTSIDE FACTORY
             </th>
         </tr>
-        <tr>
+        <tr style="background-color: lightblue;">
             <th>Device</th>
             <th>Location</th>
             <th>serial number</th>
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
@@ -126,47 +121,44 @@ style="color: black; background-color: white; text-align: center;">
             {% for device in tools_not_factory %}
                 <tr class="text-center">
                     <td>{{device.name}}</td>
-                    <td>{{device.location.name}}</td>
+                    <td>{{device.location}}</td>
                     <td>{{device.serial_number}}</td>
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>
+                        <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-warning" >
+                            Update device
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="6" style="text-align: center;background-color: green">
+            <td colspan="7" style="text-align: center;background-color: lightcyan">
                 All in factory
             </td>
         </tr>
         {% endif %}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                <a href="#" class ="btn btn-success" >
-                    Check device
-                </a>
-            </td>
-        </tr>
-    </tfoot>
 </table>
 
 <table class = "table table-bordered"
 style="color: black; background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="6" class ="text-center">
+            <th colspan="7" class ="text-center" style="background-color: lightblue;">
                 IN FACTORY AND CURRENTLY IN USE
             </th>
         </tr>
-        <tr>
+        <tr style="background-color: lightblue;">
             <th>Device</th>
             <th>Location</th>
             <th>serial number</th>
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
@@ -174,29 +166,25 @@ style="color: black; background-color: white; text-align: center;">
             {% for device in tools_not_available %}
                 <tr class="text-center">
                     <td>{{device.name}}</td>
-                    <td>{{device.location.id}}</td>
+                    <td>{{device.location}}</td>
                     <td>{{device.serial_number}}</td>
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>
+                        <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-primary" >
+                            Update device
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="6" style="text-align: center;background-color: green">
+            <td colspan="7" style="text-align: center;background-color: lightcyan">
                 All items available
             </td>
         </tr>
         {% endif %}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                <a href="#" class ="btn btn-success" >
-                    Check device
-                </a>
-            </td>
-        </tr>
-    </tfoot>
 </table>
 {% endblock %}
