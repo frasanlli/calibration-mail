@@ -21,10 +21,3 @@ def tools_state (request):
                   "tools_are_calibrating": tools_are_calibrating,
                   "tools_not_factory": tools_not_factory,
                   "tools_not_available": tools_not_available})
-
-"""def category_filter (request, category_id):
-    category = Item_catg.objects.get(id = category_id)
-    devices = Device.objects.filter(categories = category)
-    categories = Item_catg.objects.all()
-
-    return redirect("shop")"""

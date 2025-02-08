@@ -19,8 +19,12 @@ Log in
 {% block authentified %}
 {% csrf_token %}
 <div class = "intro-text left-0 bg-faded p-5 rounded text-center">
-  <button type="button" class="btn btn-secondary">Log out</button>
-  <button type="button" class="btn btn-primary">Continue session</button>
+  <a class="btn btn-secondary" href = "{% url 'log_out' %}">
+    Log out
+  </a>
+  <button type="button" class="btn btn-primary" onclick="history.back(); return false;">
+    Continue session
+  </button>
 </div>
 
 {% endblock %}

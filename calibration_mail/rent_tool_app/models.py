@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 
 class Location(models.Model):
@@ -100,14 +101,30 @@ class Device(models.Model):
     def __str__(self):
         return f"{self.name} (SN: {self.serial_number})"
 
-    def save(self, *args, **kwargs):
+    def conditions_calibration(self):
+        # Check if the object already exists in the database
+        if self.pk:
+            # Get the previous state of the object
+            previous_object = Device.objects.get(pk=self.pk)
+
+            # Rule: If calibrating is being set to False, calibration_date must have changed
+            """if not self.is_calibrating and previous_object.is_calibrating:
+                if self.last_calibration_date == previous_object.last_calibration_date:
+                    raise ValidationError("Cannot set calibrating to False unless calibration_date changes.")"""
+
         # Automatically set the calibration due date based on the last calibration date and interval
         if self.last_calibration_date and self.calibration_interval:
             self.calibration_due_date = self.last_calibration_date + relativedelta(months=self.calibration_interval)
 
+
+    def conditions_available(self):
         # Automatically change availability to false if next conditions are met:
         if self.is_calibrating or (self.location.city != "Valencia" and self.location.country != "Spain"):
             self.is_available = False
 
+
+    def save(self, *args, **kwargs):
+        self.conditions_calibration()
+        self.conditions_available()
 
         super().save(*args, **kwargs)

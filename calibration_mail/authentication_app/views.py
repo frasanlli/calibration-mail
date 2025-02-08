@@ -17,7 +17,7 @@ def log_in(request):
                                 password = password)
             if user is not None:
                 login(request, user)
-                redirect("authentication_app/log_in.html")
+                redirect("tools/tools_state.html")
             else:
                 for msg in form.error_messages:
                     messages.error(request, form.error_messages[msg])
