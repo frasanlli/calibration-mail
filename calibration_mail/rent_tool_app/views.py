@@ -13,5 +13,13 @@ def get_tool (request):
 
 def tools_state (request):
 
-    #tools_state = Device.objects.all()
-    return render(request, "tools_state/tools_state.html")
+    tools_need_calibration = Device.objects.filter(calibration_required = True).values()
+    tools_are_calibrating = Device.objects.filter(is_calibrating = True).values()
+    tools_not_factory = Device.objects.exclude(location = "Valencia_Spain").values()
+    tools_not_available = Device.objects.filter(is_available = False).values()
+    return render(request,
+                  "tools_state/tools_state.html",
+                  {"tools_need_calibration": tools_need_calibration,
+                  "tools_are_calibrating": tools_are_calibrating,
+                  "tools_not_factory": tools_not_factory,
+                  "tools_not_available": tools_not_available})
