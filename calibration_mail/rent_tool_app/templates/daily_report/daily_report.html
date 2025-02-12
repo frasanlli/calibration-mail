@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Devices Report</title>
+</head>
+<body>
+    <h1>Hello,</h1>
+    <p>Here are the state of all devices:</p>
+    <ul>
+        {% for obj in objects %}
+            <li>
+                <strong>{{ obj.name }}</strong>: {{ obj.description }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

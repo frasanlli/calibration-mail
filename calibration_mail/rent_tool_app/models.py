@@ -111,6 +111,7 @@ class Device(models.Model):
             """if not self.is_calibrating and previous_object.is_calibrating:
                 if self.last_calibration_date == previous_object.last_calibration_date:
                     raise ValidationError("Cannot set calibrating to False unless calibration_date changes.")"""
+            #Necessary to tak
 
         # Automatically set the calibration due date based on the last calibration date and interval
         if self.last_calibration_date and self.calibration_interval:
