@@ -11,7 +11,7 @@
 style="color: white; background-color: BLACK; text-align: center;">
     <thead>
         <tr>
-            <th colspan="4" class ="text-center">
+            <th colspan="6" class ="text-center">
                 DEVICES
             </th>
         </tr>
@@ -20,6 +20,8 @@ style="color: white; background-color: BLACK; text-align: center;">
             <th>Location</th>
             <th>serial number</th>
             <th>is_available</th>
+            <th>controlled_by</th>
+            <th>actions</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +32,12 @@ style="color: white; background-color: BLACK; text-align: center;">
                 <td>{{device.location}}</td>
                 <td>{{device.serial_number}}</td>
                 <td>{{device.is_available}}</td>
+                <td>{{device.controlled_by}}</td>
+                <td>
+                    <a href="{% url 'update_device' device.id %}" class ="btn btn-warning" >
+                        Update device
+                    </a>
+                </td>
             </tr>
             {% endfor %}
         {% else %}
@@ -38,14 +46,5 @@ style="color: white; background-color: BLACK; text-align: center;">
         </tr>
         {% endif %}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4" style="text-align: center;">
-                <a href="#" class ="btn btn-success" >
-                    Update device
-                </a>
-            </td>
-        </tr>
-    </tfoot>
 </table>
 {% endblock %}

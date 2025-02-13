@@ -1,15 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import Rent_device
 from .models import Device, Location
 
 # Create your views here.
-
+@login_required
 def get_tool (request):
     devices = Device.objects.all()
 
     return render(request, "get_tool/get_tool.html",
                   {"devices": devices})
 
-
+@login_required
 def tools_state (request):
     tools_need_calibration = Device.objects.filter(calibration_required = True).all()
     tools_are_calibrating = Device.objects.filter(is_calibrating = True).all()
@@ -21,3 +23,22 @@ def tools_state (request):
                   "tools_are_calibrating": tools_are_calibrating,
                   "tools_not_factory": tools_not_factory,
                   "tools_not_available": tools_not_available})
+
+@login_required
+def update_device(request, device_id):
+    instance = get_object_or_404(Device, pk=device_id)
+
+    if request.method == 'POST':
+        form = Rent_device(request.POST, instance=instance)
+        if form.is_valid():
+            device_instance = form.save(commit=False)
+            if device_instance.is_available != True:
+                device_instance.controlled_by = request.user  # Set the user to the currently logged-in user
+            else:
+                device_instance.controlled_by = None
+            device_instance.save()
+            return tools_state(request)
+    else:
+        form = Rent_device(instance=instance)
+
+    return render(request, 'rent_tool/rent_tool.html', {'form': form})

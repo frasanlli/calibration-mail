@@ -11,7 +11,7 @@
 style="background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="7" class ="text-center" style="background-color: lightblue;">
+            <th colspan="8" class ="text-center" style="background-color: lightblue;">
                 NEED CALIBRATION
             </th>
         </tr>
@@ -22,6 +22,7 @@ style="background-color: white; text-align: center;">
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>controlled_by</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -35,6 +36,7 @@ style="background-color: white; text-align: center;">
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>{{device.controlled_by}}</td>
                     <td>
                         <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-danger" >
                             Update device
@@ -44,7 +46,7 @@ style="background-color: white; text-align: center;">
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="7" style="text-align: center; background-color: lightcyan">
+            <td colspan="8" style="text-align: center; background-color: lightcyan">
                 No actions required
             </td>
         </tr>
@@ -57,7 +59,7 @@ style="background-color: white; text-align: center;">
 style="background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="7" class ="text-center" style="background-color: lightblue;">
+            <th colspan="8" class ="text-center" style="background-color: lightblue;">
                 IN CALIBRATION
             </th>
         </tr>
@@ -68,6 +70,7 @@ style="background-color: white; text-align: center;">
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>controlled_by</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -81,6 +84,7 @@ style="background-color: white; text-align: center;">
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>{{device.controlled_by}}</td>
                     <td>
                         <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-info" >
                             Update device
@@ -90,7 +94,7 @@ style="background-color: white; text-align: center;">
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="7" style="text-align: center;background-color: lightcyan">
+            <td colspan="8" style="text-align: center;background-color: lightcyan">
                 All items are calibrated
             </td>
         </tr>
@@ -102,7 +106,7 @@ style="background-color: white; text-align: center;">
 style="color: black; background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="7" class ="text-center" style="background-color: lightblue;">
+            <th colspan="8" class ="text-center" style="background-color: lightblue;">
                 OUTSIDE FACTORY
             </th>
         </tr>
@@ -113,6 +117,7 @@ style="color: black; background-color: white; text-align: center;">
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>controlled_by</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -126,8 +131,9 @@ style="color: black; background-color: white; text-align: center;">
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>{{device.controlled_by}}</td>
                     <td>
-                        <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-warning" >
+                        <a href="{% url 'update_device' device.id %}" class ="btn btn-warning" >
                             Update device
                         </a>
                     </td>
@@ -135,7 +141,7 @@ style="color: black; background-color: white; text-align: center;">
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="7" style="text-align: center;background-color: lightcyan">
+            <td colspan="8" style="text-align: center;background-color: lightcyan">
                 All in factory
             </td>
         </tr>
@@ -147,7 +153,7 @@ style="color: black; background-color: white; text-align: center;">
 style="color: black; background-color: white; text-align: center;">
     <thead>
         <tr>
-            <th colspan="7" class ="text-center" style="background-color: lightblue;">
+            <th colspan="8" class ="text-center" style="background-color: lightblue;">
                 IN FACTORY AND CURRENTLY IN USE
             </th>
         </tr>
@@ -158,6 +164,7 @@ style="color: black; background-color: white; text-align: center;">
             <th>is_available</th>
             <td>is_calibrating</td>
             <td>calibration_required</td>
+            <td>controlled_by</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -171,8 +178,9 @@ style="color: black; background-color: white; text-align: center;">
                     <td>{{device.is_available}}</td>
                     <td>{{device.is_calibrating}}</td>
                     <td>{{device.calibration_required}}</td>
+                    <td>{{device.controlled_by}}</td>
                     <td>
-                        <a href="{% url 'admin:rent_tool_app_device_change' device.id %}" class ="btn btn-primary" >
+                        <a href="{% url 'update_device' device.id %}" class ="btn btn-primary" >
                             Update device
                         </a>
                     </td>
@@ -180,7 +188,7 @@ style="color: black; background-color: white; text-align: center;">
             {% endfor %}
         {% else %}
         <tr class="text-center">
-            <td colspan="7" style="text-align: center;background-color: lightcyan">
+            <td colspan="8" style="text-align: center;background-color: lightcyan">
                 All items available
             </td>
         </tr>

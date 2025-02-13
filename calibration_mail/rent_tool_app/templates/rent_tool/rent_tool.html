@@ -1,0 +1,22 @@
+{% extends "authentication_app/base.html" %}
+
+{% block title %}
+    Current state
+{% endblock %}
+
+{% load static %}
+
+{% block authentified %}
+<head>
+    <title>Update Device</title>
+</head>
+<div style="background: white; margin-left: 10%; margin-right: 10%; padding: 2%; ">
+    <h1>Update Device</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+</div>
+{% endblock %}
+

@@ -10,5 +10,6 @@ Temporal page to see all devices. It will have an option to search.
 Temporal log out:
 ![alt text](readme_images/log_out.png)
 
-
+Temporal small form that opens when update device button is pressed:
+![alt text](readme_images/form.png)
 
