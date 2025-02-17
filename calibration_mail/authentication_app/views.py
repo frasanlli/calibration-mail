@@ -33,4 +33,4 @@ def log_in(request):
 def log_out(request):
     logout(request)
 
-    return redirect("authentication_app/log_in.html")
+    return redirect('log_in')

@@ -1,6 +1,12 @@
 Temporal log in:
 ![alt text](readme_images/log_in.png)
 
+Superuser navbar:
+![alt text](readme_images/superuser_view.png)
+
+Common user navbar:
+![alt text](readme_images/other_user_view.png)
+
 Temporal page to see devices that are not available or need calibration:
 ![alt text](readme_images/device_status.png)
 
