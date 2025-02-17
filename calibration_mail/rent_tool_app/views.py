@@ -60,6 +60,7 @@ def send_report():
 
     # Prepare email content
     subject: str = "Daily Device Report"
+    message: str = ""
     if devices_need_calibration:
         message += "Devices that require calibration and are not calibrating:\n"
         for device in devices_need_calibration:
