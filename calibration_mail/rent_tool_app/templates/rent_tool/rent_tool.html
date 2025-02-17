@@ -11,7 +11,7 @@
     <title>Update Device</title>
 </head>
 <div style="background: white; margin-left: 10%; margin-right: 10%; padding: 2%; ">
-    <h1>Update Device</h1>
+    <h1>{{device.name}} - {{device.serial_number}}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

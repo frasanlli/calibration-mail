@@ -7,6 +7,22 @@
 {% load static %}
 
 {% block authentified %}
+<div class="container text-center mt-2 mb-2">
+    {% if "valid" in request.get_full_path %}
+        <p class ="div btn-info">
+            Thanks. The other users will be updated by mail!
+        </p>
+    {% elif "error" in request.get_full_path %}
+        <p class ="div btn-danger">
+            ERROR: Summary could not be sent. Check your connection or try latter.
+        </p>
+    {% else %}
+        <a href="{% url 'send_report' %}" class ="btn btn-warning" >
+            Send summary to users
+        </a>
+    {% endif %}
+</div>
+
 <table class = "table table-bordered"
 style="background-color: white; text-align: center;">
     <thead>

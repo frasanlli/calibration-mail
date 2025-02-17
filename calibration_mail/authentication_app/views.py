@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
@@ -28,6 +29,7 @@ def log_in(request):
 
     return render(request, "authentication_app/log_in.html", {"form": form})
 
+@login_required
 def log_out(request):
     logout(request)
 
