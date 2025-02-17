@@ -34,7 +34,7 @@ def update_device(request, device_id):
         form = Rent_device(request.POST, instance=instance)
         if form.is_valid():
             device_instance = form.save(commit=False)
-            if device_instance.is_available != True:
+            if device_instance.is_available != True and device_instance.is_calibrating != True:
                 device_instance.controlled_by = request.user  # Set the user to the currently logged-in user
             else:
                 device_instance.controlled_by = None
