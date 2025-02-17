@@ -11,7 +11,7 @@ Temporal page to see devices that are not available or need calibration:
 ![alt text](readme_images/device_status.png)
 
 Temporal page to see all devices. It will have an option to search.
-![alt text](readme_images/device_status.png)
+![alt text](readme_images/all_tools.png)
 
 Temporal log out:
 ![alt text](readme_images/log_out.png)
