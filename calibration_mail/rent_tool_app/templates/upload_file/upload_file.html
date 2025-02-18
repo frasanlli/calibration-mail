@@ -1,0 +1,38 @@
+{% extends "authentication_app/base.html" %}
+
+{% block title %}
+    Import Devices
+{% endblock %}
+
+{% load static %}
+
+{% block authentified %}
+<div style="background: white; margin-left: 10%; margin-right: 10%; padding: 2%; ">
+    <h1 class="h1 pb-4">Import Devices</h1>
+    <form class="form-control" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn-primary" type="submit">Upload</button>
+    </form>
+
+    {% if messages %}
+    <ul class="alert-info">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Example Excel image -->
+    <h2 class="h2 pt-4">Example Excel:</h2>
+    <p>*NOTE: Columns not specified will take the default value "unknown" or False</p>
+    <p>Your Excel file should have the following columns:</p>
+    <ul>
+        <li><strong>name</strong>: Name of the device</li>
+        <li><strong>serial_number</strong>: Unique serial number of the device</li>
+        <li><strong>calibration_date</strong>: Date of the last calibration (YYYY-MM-DD)</li>
+    </ul>
+    <div class="text-md-center">
+        <img src="{% static 'calibration_mail/img/excel_example.png' %}" alt="Example Excel Format" style="max-width: 100%; height: auto;">
+    </div>
+</div>
+{% endblock %}

@@ -69,7 +69,7 @@
                     </li>
 
                     <li class="nav-item
-                        {% if 'tools' in request.path and 'state' not in request.path %}
+                        {% if 'get_tool' in request.path%}
                             active
                         {% endif %}
                         px-lg-4">
@@ -80,11 +80,11 @@
 
                     {% if user.is_superuser %}
                     <li class="nav-item
-                        {% if 'update_database' in request.path %}
+                        {% if 'upload_file' in request.path %}
                             active
                         {% endif %}
                         px-lg-4">
-                        <a class="nav-link text-uppercase text-expanded" href="#">Update database</a>
+                        <a class="nav-link text-uppercase text-expanded" href="{% url 'upload_file' %}">Upload from excel</a>
                     </li>
                     {% endif %}
 

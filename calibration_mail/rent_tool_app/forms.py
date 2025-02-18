@@ -9,3 +9,7 @@ class Rent_device(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(Rent_device, self).__init__(*args, **kwargs)
         self.fields['location'].queryset = Location.objects.all()
+
+class Upload_file_form(forms.Form):
+    file = forms.FileField()
+

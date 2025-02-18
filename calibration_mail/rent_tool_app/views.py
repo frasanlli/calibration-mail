@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import Rent_device
+import pandas as pd
+from .forms import Rent_device, Upload_file_form
 from .models import Device, Location
 
 # Create your views here.
@@ -89,3 +91,58 @@ def send_report():
 
     except:
         return redirect("tools_state?error.html")
+
+@login_required
+def upload_file(request):
+    if request.method == 'POST':
+        form = Upload_file_form(request.POST, request.FILES)
+        if form.is_valid():
+            file = request.FILES['file']
+            try:
+                # Read the Excel file using xlrd as the engine
+                df = pd.read_excel(file, engine='xlrd')
+
+                # Iterate over rows and create Device instances
+                for index, row in df.iterrows():
+                    Device.objects.create(
+                        name=row['name'],
+                        serial_number=row['serial_number'],
+                        last_calibration_date=row['calibration_date']
+                        # Other fields will use their default values
+                    )
+
+                messages.success(request, "Devices imported successfully!")
+                return redirect('upload_file')
+
+            except Exception as e:
+                messages.error(request, f"Error importing devices: {str(e)}")
+    else:
+        form = Upload_file_form()
+
+    return render(request, 'upload_file/upload_file.html', {'form': form})
+"""def import_devices_from_excel(file):
+    df = pd.read_excel(file)
+    for index, row in df.iterrows():
+        Device.objects.create(
+            name=row['Name'],
+            serial_number=row['Serial Number'],
+            calibration_date=row['Calibration Date']
+        )
+
+@login_required
+def upload_file(request):
+    if request.user.is_superuser:
+
+        if request.method == 'POST':
+            form = Upload_file_form(request.POST, request.FILES)
+            if form.is_valid():
+                try:
+                    import_devices_from_excel(request.FILES['file'])
+                    messages.success(request, 'Devices imported successfully!')
+                except Exception as e:
+                    messages.error(request, f'Error importing devices: {str(e)}')
+                return redirect('upload_file')
+        else:
+            form = Upload_file_form()
+
+        return render(request, 'upload_file/upload_file.html', {'form': form})"""

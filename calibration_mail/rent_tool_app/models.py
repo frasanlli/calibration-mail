@@ -31,6 +31,7 @@ class Device(models.Model):
     )
     manufacturer = models.CharField(
         max_length=255,
+        default="Unknown",
         help_text="Manufacturer of the device"
     )
     device_image = models.ImageField(
@@ -39,9 +40,12 @@ class Device(models.Model):
     )
     model_number = models.CharField(
         max_length=100,
+        default="Unknown",
         help_text="Model number of the device"
     )
     warranty_expiry_date = models.DateField(
+        blank=True,
+        null=True,
         help_text="Date when the device warranty expires"
     )
 

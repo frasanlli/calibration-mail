@@ -37,3 +37,13 @@ Temporal small form that opens when update device button is pressed:
 ![alt text](readme_images/form.png)
 
 
+Superuser page to import devices using .xls files
+
+*Only requires "name", "serial_number" and "calibration_date"
+
+![alt text](readme_images/upload_devices.png)
+
+*excel_example:
+
+![alt text](readme_images/excel_example.png)
+
